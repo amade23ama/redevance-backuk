@@ -6,11 +6,12 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
 
     <property name="now" value="current_timestamp" dbms="postgresql"/>
-    <changeSet id="0002_insert_data_table_utilisateur_et_profil_1" author="application">
+    <changeSet id="0002_insert_data_table_utilisateur_et_profil_1" author="amade">
         <insert tableName="UTILISATEUR">
             <column name="ID_UTILISATEUR" value="1" />
             <column name="PRENOM" value="admin" />
             <column name="NOM" value="admin" />
+            <column name="TELEPHONE" value="0706551123" />
             <column name="LOGIN" value="admin" />
             <column name="PASSWORD" value="admin" />
             <column name="EMAIL" value="admin@localhost.fr" />
@@ -23,6 +24,7 @@
             <column name="ID_UTILISATEUR" value="2" />
             <column name="PRENOM" value="consult" />
             <column name="NOM" value="consult" />
+            <column name="TELEPHONE" value="0706551122" />
             <column name="LOGIN" value="admin" />
             <column name="PASSWORD" value="consult" />
             <column name="EMAIL" value="consult@localhost.fr" />
@@ -35,6 +37,7 @@
             <column name="ID_UTILISATEUR" value="3" />
             <column name="PRENOM" value="utilisateur" />
             <column name="NOM" value="utilisateur" />
+            <column name="TELEPHONE" value="0706551124" />
             <column name="LOGIN" value="utilisateur" />
             <column name="PASSWORD" value="utilisateur" />
             <column name="EMAIL" value="utilisateur@localhost.fr" />

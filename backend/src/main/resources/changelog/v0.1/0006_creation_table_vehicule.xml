@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+
+
+    <changeSet id="0006_creation_table_vehicule" author="amade">
+    <createTable tableName="VEHICULE">
+        <column name="IMMATRICULATION" type="bigint" autoIncrement="true">
+            <constraints primaryKey="true"/>
+        </column>
+        <column name="ID_TRANSPORTEUR" type="NUMBER(8)" remarks="Identifiant technique du transport">
+            <constraints foreignKeyName="FK_TRANSPORTEUR" nullable="false"/>
+        </column>
+        <column name="NOM" type="varchar(50)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="VOLUME" type="DOUBLE">
+            <constraints nullable="false"/>
+        </column>
+
+        <column name="DATECREATION" type="timestamp" defaultValueDate="${now}">
+            <constraints nullable="false"/>
+        </column>
+        <column name="DATEMODIFICATION" type="timestamp">
+            <constraints nullable="true"/>
+        </column>
+
+    </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>
+
+        @Id
+        @Column(name = "IMMATRICULATION", unique = true, nullable = false, insertable = true, updatable = false)
+        private  String immatriculation;
+        /**
+        * Id du Transporteur.
+        */
+        @ManyToOne
+        @JoinColumn(name = "ID_TRANSPORTEUR", nullable = false)
+        private TransporteurEntity transporteurEntity;
+
