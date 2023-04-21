@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -35,16 +36,19 @@ public class UtilisateurEntity {
     @Column(name ="PASSWORD")
     private String password;
     @Column(name ="TELEPHONE")
-    private String tel;
+    private String telephone;
     @Column(name ="DATECREATION")
     private Date dateCreation;
     @Column(name ="DATEMODIFICATION")
     private Date dateModif;
-
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "UTILISATEUR_PROFIL",
             joinColumns = @JoinColumn(name = "ID_UTILISATEUR"),
             inverseJoinColumns = @JoinColumn(name = "DROIT"))
     private Set<ProfilEntity> profils;
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "deposeur")
+    private List<DepotEntity> depotEntityList;
 }

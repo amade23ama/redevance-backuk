@@ -6,29 +6,22 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
 
     <property name="now" value="current_timestamp" dbms="postgresql"/>
-
-    <changeSet id="0004_creation_table_produit_01" author="amade">
+    <changeSet id="03_creation_table_site_01" author="amade">
         <sql dbms="postgresql">
-            CREATE SEQUENCE SEQ_PRODUIT START WITH 1 INCREMENT BY 1 MINVALUE 1
+            CREATE SEQUENCE SEQ_SITE START WITH 1 INCREMENT BY 1 MINVALUE 1
                 MAXVALUE 999999999999999999;
         </sql>
     </changeSet>
-    <changeSet id="0004_creation_table_produit_02" author="amade">
-    <createTable tableName="PRODUIT">
-        <column name="ID_PRODUIT" type="bigint" autoIncrement="true">
+    <changeSet id="03_creation_table_site" author="amade">
+    <createTable tableName="SITE">
+        <column name="ID_SITE" type="bigint" autoIncrement="true">
             <constraints primaryKey="true"/>
         </column>
-        <column name="NOM_SRC" type="varchar(50)">
+        <column name="NOM" type="varchar(50)">
             <constraints nullable="false"/>
         </column>
-        <column name="NOM_NORM" type="varchar(50)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="DENSITE_GRM" type="varchar(50)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="DENSITE_KGM" type="varchar(50)">
-            <constraints nullable="false"/>
+        <column name="LOCALITE" type="varchar(50)">
+        <constraints nullable="false"/>
         </column>
         <column name="DATECREATION" type="timestamp" defaultValueDate="${now}">
             <constraints nullable="false"/>
@@ -38,9 +31,9 @@
         </column>
     </createTable>
         <addUniqueConstraint
-                columnNames="NOM_NORM, DENSITE_GRM,DENSITE_KGM"
-                constraintName="UQ_NOM_NORM_DENSITE_GRM_DENSITE_KGM"
-                tableName="PRODUIT"
+                columnNames="NOM, LOCALITE"
+                constraintName="UQ_NOMLOCALITE"
+                tableName="SITE"
         />
     </changeSet>
 

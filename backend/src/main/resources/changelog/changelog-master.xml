@@ -6,9 +6,14 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
 
   <!-- mettre a jour la base de donnnees -->
-<include file="changelog/v0.1/0001_creation_table_utilisateur_et_profil.xml" relativeToChangelogFile="false"/>
-<include file="changelog/v0.1/0002_insert_data_table_utilisateur_et_profil.xml" relativeToChangelogFile="false"/>
-  <include file="changelog/v0.1/0003_creation_table_site.xml" relativeToChangelogFile="false"/>
-  <include file="changelog/v0.1/0004_creation_table_produit.xml" relativeToChangelogFile="false"/>
-  <include file="changelog/v0.1/0005_creation_table_transporteur.xml" relativeToChangelogFile="false"/>
+  <include file="changelog/v0.1/01_creation_table_utilisateur_et_profil.xml" relativeToChangelogFile="false"/>
+  <include file="changelog/v0.1/02_insert_data_table_utilisateur_et_profil.xml" relativeToChangelogFile="false"/>
+  <include file="changelog/v0.1/03_creation_table_site.xml" relativeToChangelogFile="false"/>
+  <include file="changelog/v0.1/04_creation_table_produit.xml" relativeToChangelogFile="false"/>
+  <include file="changelog/v0.1/05_creation_table_transporteur.xml" relativeToChangelogFile="false"/>
+  <include file="changelog/v0.1/06_creation_table_vehicule.xml" relativeToChangelogFile="false"/>
+  <include file="changelog/v0.1/07_creation_table_depot.xml" relativeToChangelogFile="false"/>
+  <include file="changelog/v0.1/08_creation_table_site_exploitation.xml" relativeToChangelogFile="false"/>
+  <include file="changelog/v0.1/09_creation_table_chargement.xml" relativeToChangelogFile="false"/>
+  <include file="changelog/v0.1/011_creation_table_depot_chargement.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
