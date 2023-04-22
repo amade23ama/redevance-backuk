@@ -31,6 +31,9 @@
         <column name="PASSWORD" type="varchar(50)">
         <constraints nullable="false"/>
         </column>
+        <column name="ACTIF" type="boolean">
+            <constraints nullable="true"/>
+        </column>
         <column name="DATECREATION" type="timestamp" defaultValueDate="${now}">
             <constraints nullable="false"/>
         </column>

@@ -3,8 +3,10 @@ package sn.dscom.backend.database.entite;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import jakarta.persistence.*;
+import org.springframework.util.CollectionUtils;
 //import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -41,7 +43,19 @@ public class TransporteurEntity {
     @Column(name ="DATEMODIFICATION")
     private Date dateModification;
 
-    @OneToMany(mappedBy = "transporteurEntity")
+    @OneToMany(cascade = CascadeType.ALL, fetch =FetchType.EAGER,mappedBy = "transporteurEntity",orphanRemoval =true)
     private List<VehiculeEntity> vehiculeEntityListes;
+
+    public void setVehiculeEntityListes( List<VehiculeEntity> nouvelleListe) {
+        if (!CollectionUtils.isEmpty(nouvelleListe)) {
+            if (vehiculeEntityListes == null) {
+                vehiculeEntityListes = new ArrayList<>();
+            } else {
+                vehiculeEntityListes.clear();
+            }
+            vehiculeEntityListes.addAll(nouvelleListe);
+        }
+    }
+
 
 }

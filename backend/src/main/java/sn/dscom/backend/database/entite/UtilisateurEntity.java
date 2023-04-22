@@ -3,8 +3,10 @@ package sn.dscom.backend.database.entite;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import jakarta.persistence.*;
+import org.springframework.util.CollectionUtils;
 //import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -41,13 +43,36 @@ public class UtilisateurEntity {
     private Date dateCreation;
     @Column(name ="DATEMODIFICATION")
     private Date dateModif;
+    @Column(name ="ACTIF")
+    private boolean active;
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "UTILISATEUR_PROFIL",
             joinColumns = @JoinColumn(name = "ID_UTILISATEUR"),
             inverseJoinColumns = @JoinColumn(name = "DROIT"))
-    private Set<ProfilEntity> profils;
+    private List<ProfilEntity> profils;
     @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "deposeur")
+    @OneToMany(cascade = CascadeType.ALL, fetch =FetchType.EAGER,mappedBy = "deposeur",orphanRemoval =true)
     private List<DepotEntity> depotEntityList;
+
+    public void setProfils( List<ProfilEntity> nouvelleListe) {
+        if (!CollectionUtils.isEmpty(nouvelleListe)) {
+            if (profils == null) {
+                profils = new ArrayList<>();
+            } else {
+                profils.clear();
+            }
+            profils.addAll(nouvelleListe);
+        }
+    }
+    public void setDepotEntityList( List<DepotEntity> nouvelleListe) {
+        if (!CollectionUtils.isEmpty(nouvelleListe)) {
+            if (depotEntityList == null) {
+                depotEntityList = new ArrayList<>();
+            } else {
+                depotEntityList.clear();
+            }
+            depotEntityList.addAll(nouvelleListe);
+        }
+    }
 }

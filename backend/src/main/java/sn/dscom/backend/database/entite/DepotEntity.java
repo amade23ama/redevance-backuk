@@ -46,6 +46,6 @@ public class DepotEntity {
     @JoinTable(name = "DEPOT_CHARGEMENT",
             joinColumns = @JoinColumn(name = "ID_DEPOT"),
             inverseJoinColumns = @JoinColumn(name = "ID_CHARGEMENT"))
-    private Set<ChargementEntity> chargementEntitySet;
+    private List<ChargementEntity> chargementEntityList;
 
 }
