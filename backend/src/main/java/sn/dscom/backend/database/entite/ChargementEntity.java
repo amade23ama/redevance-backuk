@@ -1,15 +1,14 @@
 package sn.dscom.backend.database.entite;
 
 import lombok.*;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
+//import javax.persistence.*;
 import java.util.Date;
-
-@Getter
-@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "CHARGEMENT")
 public class ChargementEntity {

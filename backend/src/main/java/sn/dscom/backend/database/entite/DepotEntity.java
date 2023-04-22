@@ -3,7 +3,8 @@ package sn.dscom.backend.database.entite;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.*;
+//import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -32,7 +33,7 @@ public class DepotEntity {
     private String nomFichier;
     @ManyToOne
     @JoinColumn(name = "ID_UTILISATEUR", nullable = false)
-    protected UtilisateurEntity deposeur;
+    private UtilisateurEntity deposeur;
     @Column(name = "NB_CHARGEMENT_DEPOT")
     private Integer nbChargementDeposes;
     @Column(name = "NB_CHARGEMENT_REDEBOT")

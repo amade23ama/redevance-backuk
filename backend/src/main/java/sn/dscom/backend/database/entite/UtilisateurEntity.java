@@ -2,8 +2,8 @@ package sn.dscom.backend.database.entite;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
+//import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
@@ -48,7 +48,6 @@ public class UtilisateurEntity {
             inverseJoinColumns = @JoinColumn(name = "DROIT"))
     private Set<ProfilEntity> profils;
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER)
-    @OneToMany(mappedBy = "deposeur")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "deposeur")
     private List<DepotEntity> depotEntityList;
 }

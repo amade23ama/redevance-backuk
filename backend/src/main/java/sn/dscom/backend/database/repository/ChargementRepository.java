@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import sn.dscom.backend.database.entite.ChargementEntity;
 
 @Repository
-public interface ChargementRepository extends JpaRepository<ChargementEntity,Long> {
+public interface ChargementRepository extends JpaRepository<ChargementEntity,Long>{
 }

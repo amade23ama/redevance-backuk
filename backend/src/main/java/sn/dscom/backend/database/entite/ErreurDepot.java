@@ -2,15 +2,15 @@ package sn.dscom.backend.database.entite;
 
 import lombok.*;
 
-import javax.persistence.*;
-
+//import javax.persistence.*;
+import jakarta.persistence.*;
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "ERREUR_DEPOT")
+//@Entity
+//@Table(name = "ERREUR_DEPOT")
 public class ErreurDepot {
     public static final String ID_SEQUENCE_NAME = "SEQ_ERREUR_DEPOT";
     @Id
