@@ -24,10 +24,10 @@
         <column name="NOM_NORM" type="varchar(50)">
             <constraints nullable="false"/>
         </column>
-        <column name="DENSITE_GRM" type="varchar(50)">
+        <column name="DENSITE_GRM" type="double">
             <constraints nullable="false"/>
         </column>
-        <column name="DENSITE_KGM" type="varchar(50)">
+        <column name="DENSITE_KGM" type="double">
             <constraints nullable="false"/>
         </column>
         <column name="DATECREATION" type="timestamp" defaultValueDate="${now}">

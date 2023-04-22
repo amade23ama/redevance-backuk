@@ -25,7 +25,7 @@
             <column name="PRENOM" value="consult" />
             <column name="NOM" value="consult" />
             <column name="TELEPHONE" value="0706551122" />
-            <column name="LOGIN" value="admin" />
+            <column name="LOGIN" value="consult" />
             <column name="PASSWORD" value="consult" />
             <column name="EMAIL" value="consult@localhost.fr" />
             <column name="DATECREATION" value="2023-04-19" />

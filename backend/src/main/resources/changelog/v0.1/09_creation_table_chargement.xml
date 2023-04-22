@@ -29,7 +29,7 @@
         <column name="ID_PRODUIT" type="bigint" remarks="Identifiant technique du produit">
             <constraints foreignKeyName="FK_PRODUIT" nullable="false"/>
         </column>
-        <column name="IMMATRICULATION" type="bigint" remarks="Identifiant technique du vehicule">
+        <column name="ID_VEHICULE" type="bigint" remarks="Identifiant technique du vehicule">
             <constraints foreignKeyName="FK_VEHICULE" nullable="false"/>
         </column>
 
@@ -57,7 +57,7 @@
     </createTable>
 
         <addUniqueConstraint
-                columnNames="ID_SITE,ID_PRODUIT,IMMATRICULATION,DESTINATION,POIDS,POIDS_MAX,POIDS_SUBST,VOLUME_SUBST,VOLUME_MOYEN,ECART"
+                columnNames="ID_SITE,ID_PRODUIT,ID_VEHICULE,DESTINATION,POIDS,POIDS_MAX,POIDS_SUBST,VOLUME_SUBST,VOLUME_MOYEN,ECART"
                 constraintName="UQ_Chargement"
                 tableName="CHARGEMENT"
         />
@@ -74,10 +74,10 @@
                                  referencedColumnNames="ID_PRODUIT"
                                  referencedTableName="PRODUIT"/>
 
-        <addForeignKeyConstraint baseColumnNames="IMMATRICULATION"
+        <addForeignKeyConstraint baseColumnNames="ID_VEHICULE"
                                  baseTableName="CHARGEMENT"
                                  constraintName="fk_VEHICULE"
-                                 referencedColumnNames="IMMATRICULATION"
+                                 referencedColumnNames="ID_VEHICULE"
                                  referencedTableName="VEHICULE"/>
 
         <addForeignKeyConstraint baseColumnNames="ID_SITE_EXPLOITATION"

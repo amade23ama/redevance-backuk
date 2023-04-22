@@ -25,7 +25,9 @@
         <column name="EMAIL" type="varchar(254)">
             <constraints unique="true"/>
         </column>
-        <column name="LOGIN" type="varchar(60)"/>
+        <column name="LOGIN" type="varchar(60)">
+            <constraints unique="true"/>
+        </column>
         <column name="PASSWORD" type="varchar(50)">
         <constraints nullable="false"/>
         </column>

@@ -11,9 +11,14 @@
 
     <changeSet id="06_creation_table_vehicule" author="amade">
     <createTable tableName="VEHICULE">
-        <column name="IMMATRICULATION" type="bigint" autoIncrement="true">
+
+        <column name="ID_VEHICULE" type="bigint" autoIncrement="true">
             <constraints primaryKey="true"/>
         </column>
+        <column name="IMMATRICULATION" type="varchar(50)" remarks="Identifiant technique de la voiture">
+            <constraints unique="true" nullable="false"/>
+        </column>
+
         <column name="ID_TRANSPORTEUR" type="bigint" remarks="Identifiant technique du transporteur">
             <constraints foreignKeyName="FK_TRANSPORTEUR" nullable="false"/>
         </column>
@@ -32,6 +37,7 @@
         </column>
 
     </createTable>
+
         <addForeignKeyConstraint baseColumnNames="ID_TRANSPORTEUR"
                                  baseTableName="VEHICULE"
                                  constraintName="fk_ID_TRANSPORTEUR_"

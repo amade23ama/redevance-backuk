@@ -26,9 +26,9 @@ public class ProduitEntity {
     @Column(name = "NOM_NORM")
     private  String nomNORM;
     @Column(name = "DENSITE_GRM")
-    private  double densiteGRM;
+    private  Double densiteGRM;
     @Column(name = "DENSITE_KGM")
-    private  double densiteKGM;
+    private  Double densiteKGM;
     @Column(name ="DATECREATION")
     private Date dateCreation;
     @Column(name ="DATEMODIFICATION")
