@@ -7,6 +7,7 @@ import sn.dscom.backend.database.entite.ProfilEntity;
 import sn.dscom.backend.database.entite.SiteEntity;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 @Component
 public class SiteConverter {
@@ -15,13 +16,30 @@ public class SiteConverter {
 
     public static SiteDTO toSiteDTO(@Valid SiteEntity siteEntity) {
         //todo
-        return null;
+        if (siteEntity == null) {
+            return null;
+        }
+        return SiteDTO.builder()
+                .id(siteEntity.getId())
+                .nom(siteEntity.getNom())
+                .localite(siteEntity.getLocalite())
+                .dateCreation(siteEntity.getId() == null ? new Date()  :siteEntity.getDateCreation())
+                .dateModification(siteEntity == null ? null :siteEntity.getDateModification())
+                .build();
     }
-    public static SiteEntity toSiteEntity( SiteDTO profilDTO) {
+    public static SiteEntity toSiteEntity( SiteDTO siteDTO) {
         // todo
-        final SiteEntity siteEntity = new SiteEntity();
-        // siteEntity.setId(siteDTO.getId());
+        if (siteDTO == null) {
+            return null;
+        }
 
+        final SiteEntity siteEntity = SiteEntity.builder()
+                .id(siteDTO.getId())
+                .nom(siteDTO.getNom())
+                .localite(siteDTO.getLocalite())
+                .dateCreation(siteDTO.getId() == null ? new Date() :siteDTO.getDateCreation())
+                .dateModification(siteDTO == null ? null :siteDTO.getDateModification())
+                .build();
         return siteEntity;
     }
 }

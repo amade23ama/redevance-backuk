@@ -42,7 +42,7 @@ public class UtilisateurEntity {
     @Column(name ="DATECREATION")
     private Date dateCreation;
     @Column(name ="DATEMODIFICATION")
-    private Date dateModif;
+    private Date dateModification;
     @Column(name ="ACTIF")
     private boolean active;
     @JsonIgnore

@@ -2,9 +2,7 @@ package sn.dscom.backend.common.dto;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import sn.dscom.backend.database.entite.TransporteurEntity;
 
 import java.util.ArrayList;
@@ -13,12 +11,14 @@ import java.util.List;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class VehiculeDTO {
     //todo
     private Long id;
     private  String immatriculation;
-    private TransporteurDTO transporteurDTO;
+    private TransporteurDTO transporteur;
     private  String nom;
     private  Double volume;
     private Date dateCreation;

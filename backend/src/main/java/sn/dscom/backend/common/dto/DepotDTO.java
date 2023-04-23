@@ -1,9 +1,7 @@
 package sn.dscom.backend.common.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import sn.dscom.backend.database.entite.ChargementEntity;
 import sn.dscom.backend.database.entite.UtilisateurEntity;
 
@@ -13,7 +11,9 @@ import java.util.List;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class DepotDTO {
     //todo
     private Long id;

@@ -1,9 +1,7 @@
 package sn.dscom.backend.common.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import sn.dscom.backend.database.entite.DepotEntity;
 import sn.dscom.backend.database.entite.ProfilEntity;
 
@@ -14,7 +12,9 @@ import java.util.Set;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UtilisateurDTO {
     //todo
     private Long id;
@@ -25,8 +25,8 @@ public class UtilisateurDTO {
     private String password;
     private String telephone;
     private Date dateCreation;
-    private Date dateModif;
+    private Date dateModification;
     private boolean active;
-    private List<ProfilDTO> profilsDTO;
+    private List<ProfilDTO> profils;
     private List<DepotDTO> depotEntityListDTO;
 }

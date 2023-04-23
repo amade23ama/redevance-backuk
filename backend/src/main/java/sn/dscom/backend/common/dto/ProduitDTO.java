@@ -1,8 +1,6 @@
 package sn.dscom.backend.common.dto;
 import jakarta.persistence.Column;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,7 +8,9 @@ import java.util.List;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class ProduitDTO {
     //todo
     private Long id;

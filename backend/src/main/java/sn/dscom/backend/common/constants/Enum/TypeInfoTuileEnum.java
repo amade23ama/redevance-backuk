@@ -7,19 +7,10 @@ import lombok.Getter;
  */
 @Getter
 public enum TypeInfoTuileEnum {
-
+    DEPOT("DEPOT"),
+    SITE("DEPOT"),
     /** En cours. */
-    EN_COURS("EN.COURS"),
-    /** En attente. */
-    EN_ATTENTE("EN.ATTENTE"),
-    /** En attente FAM. */
-    EN_ATTENTE_FAM("EN.ATTENTE"),
-    /** A faire. */
-    A_FAIRE("A.FAIRE"),
-    /** A viser. */
-    VISER("VISER"),
-    /** A instruire. */
-    A_INSTRUIRE("A.INSTRUIRE");
+    EN_COURS("EN.COURS");
 
     /**
      * Code de l'info tuile.

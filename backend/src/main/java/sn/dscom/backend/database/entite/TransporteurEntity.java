@@ -46,7 +46,7 @@ public class TransporteurEntity {
     @OneToMany(cascade = CascadeType.ALL, fetch =FetchType.EAGER,mappedBy = "transporteurEntity",orphanRemoval =true)
     private List<VehiculeEntity> vehiculeEntityListes;
 
-    public void setVehiculeEntityListes( List<VehiculeEntity> nouvelleListe) {
+    /*public void setVehiculeEntityListes( List<VehiculeEntity> nouvelleListe) {
         if (!CollectionUtils.isEmpty(nouvelleListe)) {
             if (vehiculeEntityListes == null) {
                 vehiculeEntityListes = new ArrayList<>();
@@ -56,6 +56,7 @@ public class TransporteurEntity {
             vehiculeEntityListes.addAll(nouvelleListe);
         }
     }
+    */
 
 
 }
