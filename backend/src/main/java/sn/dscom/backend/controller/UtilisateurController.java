@@ -24,10 +24,8 @@ public class UtilisateurController {
     }
 
     @PostMapping("/test")
-    @PreAuthorize("hasRole('CONSULT')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public UtilisateurConnectedDTO logout(){
-        SimpleGrantedAuthority test= new SimpleGrantedAuthority("CONSULT");
-
         SecurityContext ctx = SecurityContextHolder.getContext();
          UtilisateurConnectedDTO user = (UtilisateurConnectedDTO) ctx.getAuthentication().getPrincipal();
         return  user;

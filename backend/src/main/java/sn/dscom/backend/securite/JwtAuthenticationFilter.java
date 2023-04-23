@@ -22,6 +22,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 Authentication auth = new JwtAuthentication(token);
                 auth.setAuthenticated(true);
                 SecurityContextHolder.getContext().setAuthentication(auth);
+
             }catch (Exception e){
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 //PrintWriter writer = response.getWriter();
