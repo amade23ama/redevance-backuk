@@ -26,11 +26,17 @@ public class TokenUtils {
 
 
     public static String generateToken(UtilisateurConnectedDTO utilisateurConnectedDTO) {
+
         String token= Jwts.builder()
+                .claim("login",utilisateurConnectedDTO.getLogin())
+                .claim("prenom",utilisateurConnectedDTO.getPrenom())
+                .claim("nom",utilisateurConnectedDTO.getNom())
                 .setSubject(utilisateurConnectedDTO.getEmail())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET)
-                .claim("authorities", utilisateurConnectedDTO.getAuthorities().toArray())
+                .claim("authorities", utilisateurConnectedDTO.getAuthorities().stream()
+                        .map(GrantedAuthority::getAuthority)
+                        .collect(Collectors.toList()))
                 .compact();
         return token;
 
@@ -41,8 +47,6 @@ public class TokenUtils {
                 .parseClaimsJws(token)
                 .getBody();
 
-        String username = claims.getSubject();
-
         List<?> listAuthorities= (List)claims.get("authorities");
         Collection<? extends GrantedAuthority> authorities = (Collection)listAuthorities.stream().map((item) -> {
             return new SimpleGrantedAuthority(item.toString());
@@ -50,8 +54,11 @@ public class TokenUtils {
 
 
       return   UtilisateurConnectedDTO.builder()
-                .email(username)
-                .authorities(authorities)
+                .login((String)claims.get("login"))
+                .email(claims.getSubject())
+                .nom((String)claims.get("nom"))
+                .prenom((String)claims.get("prenom"))
+                .authorities(new ArrayList<>(authorities))
                 .build();
 
     }

@@ -1,17 +1,19 @@
 package sn.dscom.backend.service.converter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import sn.dscom.backend.common.dto.ProfilDTO;
+import sn.dscom.backend.common.dto.UtilisateurConnectedDTO;
 import sn.dscom.backend.common.dto.UtilisateurDTO;
 import sn.dscom.backend.common.dto.VehiculeDTO;
 import sn.dscom.backend.database.entite.ProfilEntity;
 import sn.dscom.backend.database.entite.UtilisateurEntity;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class UtilisateurConverter {
@@ -74,6 +76,25 @@ public class UtilisateurConverter {
 
 
         return utilisateurEntity;
+    }
+    public static UtilisateurConnectedDTO toUtilisateurConnectedDTO(@Valid UtilisateurEntity utilisateurEntity){
+        if (utilisateurEntity == null) {
+            return null;
+        }
+        UtilisateurConnectedDTO utilisateurConnectedDTO = UtilisateurConnectedDTO.builder()
+                .email(utilisateurEntity.getEmail())
+                .id(utilisateurEntity.getId())
+                .prenom(utilisateurEntity.getPrenom())
+                .nom(utilisateurEntity.getNom())
+                .login(utilisateurEntity.getLogin())
+                .build();
+
+        Collection<? extends GrantedAuthority> authorities = utilisateurEntity.getProfils().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getCode()))
+                .collect(Collectors.toList());
+        utilisateurConnectedDTO.setAuthorities(authorities);
+        return utilisateurConnectedDTO;
+
     }
 
 

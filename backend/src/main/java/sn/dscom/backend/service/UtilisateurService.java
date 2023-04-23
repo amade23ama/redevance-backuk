@@ -3,9 +3,13 @@ package sn.dscom.backend.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sn.dscom.backend.common.dto.Credentials;
+import sn.dscom.backend.common.dto.UtilisateurConnectedDTO;
 import sn.dscom.backend.common.dto.UtilisateurDTO;
 import sn.dscom.backend.database.entite.UtilisateurEntity;
 import sn.dscom.backend.database.repository.UtilisateurRepository;
+import sn.dscom.backend.service.converter.UtilisateurConverter;
+import sn.dscom.backend.service.util.TokenUtils;
 
 @Service
 @Transactional
@@ -28,5 +32,12 @@ public class UtilisateurService {
         //return utilisateurRepository.getReferenceById();
         // todo
         return null;
+    }
+    @Transactional
+    public String authentification(Credentials credentials){
+        UtilisateurEntity  user=  utilisateurRepository.findUtilisateurEntitiesByLoginExists(credentials.getLogin());
+        UtilisateurConnectedDTO utilisateurConnectedDTO=UtilisateurConverter.toUtilisateurConnectedDTO(user);
+        String token = TokenUtils.generateToken(utilisateurConnectedDTO);
+        return token;
     }
 }

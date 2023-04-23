@@ -2,17 +2,20 @@ package sn.dscom.backend.securite;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import sn.dscom.backend.common.dto.UtilisateurConnectedDTO;
 import sn.dscom.backend.service.util.TokenUtils;
 
 import javax.security.auth.Subject;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class JwtAuthentication implements Authentication {
     private UtilisateurConnectedDTO utilisateurConnectedDTO;
-
+    private boolean isAuthenticated;
     public JwtAuthentication(String token) {
         this.utilisateurConnectedDTO = TokenUtils.getUtilisateurConnectedByToken(token);
+        this.isAuthenticated=false;
     }
 
     @Override
@@ -37,12 +40,12 @@ public class JwtAuthentication implements Authentication {
 
     @Override
     public boolean isAuthenticated() {
-        return false;
+        return this.isAuthenticated;
     }
 
     @Override
     public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
-
+        this.isAuthenticated=isAuthenticated;
     }
 
     /**
