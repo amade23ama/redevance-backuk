@@ -1,6 +1,7 @@
 package sn.dscom.backend.database.entite;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import jakarta.persistence.*;
 import org.springframework.util.CollectionUtils;
@@ -52,7 +53,8 @@ public class UtilisateurEntity {
             inverseJoinColumns = @JoinColumn(name = "DROIT"))
     private List<ProfilEntity> profils;
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, fetch =FetchType.EAGER,mappedBy = "deposeur",orphanRemoval =true)
+    @OneToMany(cascade = CascadeType.ALL, fetch =FetchType.LAZY,mappedBy = "deposeur")
+    @JsonManagedReference
     private List<DepotEntity> depotEntityList;
 
     public void setProfils( List<ProfilEntity> nouvelleListe) {

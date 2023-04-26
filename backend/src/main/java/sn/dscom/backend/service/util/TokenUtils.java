@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class TokenUtils {
     static Logger log= LogManager.getLogger(TokenUtils.class);
     private static final String SECRET = "mysecretkey";
-    private static final long EXPIRATION_TIME = 1000000;
+    private static final long EXPIRATION_TIME = 100000000;
 
 
 

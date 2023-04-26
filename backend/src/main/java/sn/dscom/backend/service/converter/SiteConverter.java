@@ -37,7 +37,7 @@ public class SiteConverter {
                 .id(siteDTO.getId())
                 .nom(siteDTO.getNom())
                 .localite(siteDTO.getLocalite())
-                .dateCreation(siteDTO.getId() == null ? new Date() :siteDTO.getDateCreation())
+                .dateCreation(siteDTO.getDateCreation() == null ? new Date() :siteDTO.getDateCreation())
                 .dateModification(siteDTO == null ? null :siteDTO.getDateModification())
                 .build();
         return siteEntity;

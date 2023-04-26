@@ -11,47 +11,62 @@ import sn.dscom.backend.database.repository.UtilisateurRepository;
 import sn.dscom.backend.service.converter.UtilisateurConverter;
 import sn.dscom.backend.service.util.TokenUtils;
 
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Transactional
 @AllArgsConstructor
 public class UtilisateurService {
     private UtilisateurRepository utilisateurRepository;
 
-    @Transactional
-    public UtilisateurEntity ajouterUtilisateur(UtilisateurDTO utilisateurDTO){
-        // todo
-        return null;
-    }
-    @Transactional
-    public UtilisateurDTO majUtilisateur( UtilisateurDTO utilisateurDTO){
-        // todo
-        return null;
-
-    }
-    private UtilisateurEntity chargerUtilisateurFromDatabase(final UtilisateurDTO utilisateurDTO) {
+    private UtilisateurEntity chargerUtilisateurFromDatabase(UtilisateurDTO utilisateurDTO) {
         //return utilisateurRepository.getReferenceById();
         // todo
         return null;
     }
-    /*@Transactional
-    public String authentification(Credentials credentials){
-        UtilisateurEntity  user=  utilisateurRepository.findUtilisateurEntitiesByLoginExists(credentials.getLogin());
-        UtilisateurConnectedDTO utilisateurConnectedDTO=UtilisateurConverter.toUtilisateurConnectedDTO(user);
-        String token = TokenUtils.generateToken(utilisateurConnectedDTO);
-        return token;
-    }
-    */
     @Transactional
-    public UtilisateurConnectedDTO chargerUtilisateurConnected(final UtilisateurConnectedDTO utilisateurConnectedDTO) {
-        // todo
-       /* UtilisateurEntity  user=  utilisateurRepository.findUtilisateurEntitiesByLoginExists(utilisateurConnectedDTO.getLogin());
-        UtilisateurConnectedDTO userConnectedDTO=UtilisateurConverter.toUtilisateurConnectedDTO(user);
-        return userConnectedDTO;
-        */
-        return  null;
-    }
     public  UtilisateurDTO sauvegarderUtilisateur(UtilisateurDTO utilisateurDTO){
-        return null;
+      return  miseaJourUtilisateur(utilisateurDTO);
+    }
 
+    /**
+     * pour active ou desactive un utilisateur
+     * @param utilisateurDTO
+     * @return
+     */
+    @Transactional
+    public  UtilisateurDTO activeOrDesactiveUtilisateur(UtilisateurDTO utilisateurDTO){
+        UtilisateurEntity userDetail = utilisateurRepository.findById(utilisateurDTO.getId()).orElse(null);
+        if(userDetail!=null){
+            userDetail.setActive(utilisateurDTO.isActive());
+            userDetail=utilisateurRepository.save(userDetail);
+        }
+       return UtilisateurConverter.toUtilisateurDTO(userDetail);
+    }
+    @Transactional
+    public  List<UtilisateurDTO> getAllUtilisateurs(){
+      List<UtilisateurEntity> users = utilisateurRepository.findAll();
+        List<UtilisateurDTO>  utilisateurDTOList=users.stream()
+                .map(u->UtilisateurConverter.toUtilisateurDTO(u))
+                .collect(Collectors.toList());
+
+        return utilisateurDTOList;
+    }
+
+    private UtilisateurDTO miseaJourUtilisateur(UtilisateurDTO utilisateurDTO){
+        UtilisateurEntity user= UtilisateurConverter.toUtilisateurEntity(utilisateurDTO);
+        UtilisateurEntity userDetail = utilisateurRepository.findById(utilisateurDTO.getId()).orElse(null);
+        if(userDetail!=null){
+            user.setDateModification(new Date());
+            user.setId(userDetail.getId());
+            userDetail= utilisateurRepository.save(user);
+        }else {
+            user.setId(null);
+            user.setDateCreation(new Date());
+            userDetail= utilisateurRepository.save(user);
+        }
+        return UtilisateurConverter.toUtilisateurDTO(userDetail);
     }
 }
