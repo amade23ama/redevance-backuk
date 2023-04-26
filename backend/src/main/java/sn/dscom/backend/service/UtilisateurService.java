@@ -33,11 +33,25 @@ public class UtilisateurService {
         // todo
         return null;
     }
-    @Transactional
+    /*@Transactional
     public String authentification(Credentials credentials){
         UtilisateurEntity  user=  utilisateurRepository.findUtilisateurEntitiesByLoginExists(credentials.getLogin());
         UtilisateurConnectedDTO utilisateurConnectedDTO=UtilisateurConverter.toUtilisateurConnectedDTO(user);
         String token = TokenUtils.generateToken(utilisateurConnectedDTO);
         return token;
+    }
+    */
+    @Transactional
+    public UtilisateurConnectedDTO chargerUtilisateurConnected(final UtilisateurConnectedDTO utilisateurConnectedDTO) {
+        // todo
+       /* UtilisateurEntity  user=  utilisateurRepository.findUtilisateurEntitiesByLoginExists(utilisateurConnectedDTO.getLogin());
+        UtilisateurConnectedDTO userConnectedDTO=UtilisateurConverter.toUtilisateurConnectedDTO(user);
+        return userConnectedDTO;
+        */
+        return  null;
+    }
+    public  UtilisateurDTO sauvegarderUtilisateur(UtilisateurDTO utilisateurDTO){
+        return null;
+
     }
 }

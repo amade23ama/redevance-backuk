@@ -5,10 +5,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sn.dscom.backend.common.dto.UtilisateurConnectedDTO;
+import sn.dscom.backend.common.dto.UtilisateurDTO;
 import sn.dscom.backend.service.UtilisateurService;
 
 import java.util.Collection;
@@ -23,11 +22,16 @@ public class UtilisateurController {
         this.utilisateurService=utilisateurService;
     }
 
-    @PostMapping("/test")
+    //@ApiOperation(value = "Enregistrer un utilisateur")
+    @PutMapping(value = "/utilisateur/enregistrer")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public UtilisateurConnectedDTO logout(){
-        SecurityContext ctx = SecurityContextHolder.getContext();
-         UtilisateurConnectedDTO user = (UtilisateurConnectedDTO) ctx.getAuthentication().getPrincipal();
-        return  user;
+   /* @ApiResponses(value = {@ApiResponse(code = 200, message = "Succès de la requête"),
+            @ApiResponse(code = 401, message = "Ressource non autorisée"),
+            @ApiResponse(code = 403, message = "Ressource interdite"),
+            @ApiResponse(code = 404, message = "Ressource non trouvée"),
+            @ApiResponse(code = 500, message = "Erreur interne du serveur")})
+    */
+    public UtilisateurDTO enregistrerUtilisateur(@RequestBody UtilisateurDTO utilisateurDTO) {
+        return utilisateurService.sauvegarderUtilisateur(utilisateurDTO);
     }
 }

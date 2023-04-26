@@ -7,7 +7,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-//@EntityScan(basePackages = {"sn.*"})
 public class BackendApplication implements CommandLineRunner {
     static Logger log= LogManager.getLogger(BackendApplication.class);
     public static void main(String[] args) {

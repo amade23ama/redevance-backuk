@@ -1,6 +1,7 @@
 package sn.dscom.backend.service.util;
 
 import io.jsonwebtoken.*;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,7 @@ public class TokenUtils {
     public static String generateToken(UtilisateurConnectedDTO utilisateurConnectedDTO) {
 
         String token= Jwts.builder()
+                .setId(utilisateurConnectedDTO.getId().toString())
                 .claim("login",utilisateurConnectedDTO.getLogin())
                 .claim("prenom",utilisateurConnectedDTO.getPrenom())
                 .claim("nom",utilisateurConnectedDTO.getNom())
@@ -51,7 +53,6 @@ public class TokenUtils {
         Collection<? extends GrantedAuthority> authorities = (Collection)listAuthorities.stream().map((item) -> {
             return new SimpleGrantedAuthority(item.toString());
         }).collect(Collectors.toList());
-
 
       return   UtilisateurConnectedDTO.builder()
                 .login((String)claims.get("login"))
@@ -86,5 +87,16 @@ public class TokenUtils {
             log.error("JWT token is unsupported: {}", e.getMessage());
             throw new CommonMetierException(HttpStatus.NOT_ACCEPTABLE.value(), ErreurEnum.ERR_CONTRAT_NOT_FOUND);
         }
+    }
+
+    public static String extractTokenRequest(HttpServletRequest request){
+        //todo
+        String header = request.getHeader("Authorization");
+        return header;
+        /*if (header != null && header.startsWith("Bearer ")) {
+            return header.substring(7);
+        }
+        */
+        // return null;
     }
 }
